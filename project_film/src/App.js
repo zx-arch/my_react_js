@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import ReactPaginate from 'react-paginate';
 
 function App() {
   const [movie, setMovie] = useState([]);
@@ -22,9 +23,11 @@ function App() {
       setMovie(data.results);
     }
   };
-
+  const handlePage = (data) => {
+    console.log(data.selected);
+  }
   return (
-    <div className='container'>
+    <>
       <form
         action=""
         className="search-bar"
@@ -48,7 +51,7 @@ function App() {
 
           <div className="sec-center">
             <input className="dropdown" type="checkbox" id="dropdown" name="dropdown" />
-            <label className="for-dropdown" for="dropdown">Filter By<i className="uil uil-arrow-down"></i></label>
+            <label className="for-dropdown" htmlFor="dropdown">Filter By<i className="uil uil-arrow-down"></i></label>
             <div className="section-dropdown">
               <a>Rating Tertinggi<i className="uil uil-arrow-right"></i></a>
               <a>Popular<i className="uil uil-arrow-right"></i></a>
@@ -58,17 +61,34 @@ function App() {
         </div>
       </form>
 
-
-      <div className="card-container">
-        {movie.map((val, index) => (
-          <div div className="card" key={index} >
-            <div className="wrapper">
-              <img src={`https://image.tmdb.org/t/p/w500/${val.poster_path}`} className="cover-image" alt={val.title} />
+      <>
+        <div className="card-container">
+          {movie.map((val, index) => (
+            <div className="card" key={index} >
+              <div className="wrapper">
+                <img src={`https://image.tmdb.org/t/p/w500/${val.poster_path}`} className="cover-image" alt={val.title} />
+              </div>
             </div>
+          ))}
+        </div>
+        <div className='paginate-container'>
+          <div className='paginate'>
+            <ReactPaginate
+              previousLabel={'previous'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              pageCount={12}
+              marginPagesDisplayed={4}
+              pageRangeDisplayed={3}
+              onPageChange={handlePage}
+              containerClassName={'paginate-container'}
+              pageClassName={'page-item'}
+              pageLinkClassName={'page-link'}
+            />
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      </>
+    </>
   );
 }
 
