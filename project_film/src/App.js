@@ -80,7 +80,7 @@ function App() {
           <div className="detail-container">
             <div className="card-container">
               <a href="/" className="hero-image-container">
-                <img className="detail-image" src={`https://image.tmdb.org/t/p/w500/${selectedMovie.poster_path}`} />
+                <img className="detail-image" src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`} />
               </a>
               <main className="main-content">
                 <h2>{selectedMovie.title}</h2>
