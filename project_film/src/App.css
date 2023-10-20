@@ -59,6 +59,19 @@ ul {
   padding-top: 10px;
   display: inline-block;
 }
+li.previous.disabled {
+  display: none;
+}
+li.next.disabled {
+  display: none;
+}
+li {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .next {
   padding: 2px;
   padding-top: 10px;

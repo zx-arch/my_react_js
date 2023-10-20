@@ -5,6 +5,8 @@ import ReactPaginate from 'react-paginate';
 function App() {
   const [movie, setMovie] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [showPrevious, setShowPrevious] = useState(false);
+  const [showNext, setshowNext] = useState(false);
 
   const fetchMovie = async () => {
     console.log(movie);
@@ -15,7 +17,6 @@ function App() {
   useEffect(() => {
     fetchMovie()
   }, [])
-
   const search = async (q) => {
     const URL = `https://api.themoviedb.org/3/search/movie?query=${q}&api_key=27bd4dad0754c77391111e35f827bd6a`;
     const response = await fetch(URL);
@@ -33,8 +34,27 @@ function App() {
     setSelectedMovie(data);
   }
 
-  const handlePage = (data) => {
-    console.log(data.selected);
+  const handlePage = async (page) => {
+    page.selected += 1;
+    console.log(page.selected);
+    const URL = `https://api.themoviedb.org/3/discover/movie?api_key=27bd4dad0754c77391111e35f827bd6a&page=${page.selected}`;
+    const response = await fetch(URL);
+    const data_page = await response.json();
+    if (page.selected > 0) {
+      setMovie(data_page.results);
+      if (page.selected === 1) {
+        setShowPrevious(false);
+        setshowNext(true);
+      } else {
+        setShowPrevious(true);
+        if (page.selected === 6) {
+          setshowNext(false);
+        } else {
+          setshowNext(true);
+        }
+      }
+    }
+
   }
 
   const refreshPage = async () => {
@@ -110,18 +130,31 @@ function App() {
 
             <div className='paginate-container' >
               <div className='paginate'>
-                <ReactPaginate
-                  previousLabel={'previous'}
-                  nextLabel={'next'}
-                  breakLabel={'...'}
-                  pageCount={12}
-                  marginPagesDisplayed={4}
-                  pageRangeDisplayed={3}
-                  onPageChange={handlePage}
-                  containerClassName={'paginate-container'}
-                  pageClassName={'page-item'}
-                  pageLinkClassName={'page-link'}
-                />
+                {showPrevious ? (
+
+                  <ReactPaginate
+                    previousLabel={showPrevious ? 'Previous' : ''}
+                    nextLabel={showNext ? 'Next' : ''}
+                    pageCount={6}
+                    marginPagesDisplayed={4}
+                    pageRangeDisplayed={3}
+                    onPageChange={handlePage}
+                    containerClassName={'paginate-container'}
+                    pageClassName={'page-item'}
+                    pageLinkClassName={'page-link'}
+                  />
+                ) : (
+                  <ReactPaginate
+                    nextLabel={showNext ? 'Next' : ''}
+                    pageCount={6}
+                    marginPagesDisplayed={4}
+                    pageRangeDisplayed={3}
+                    onPageChange={handlePage}
+                    containerClassName={'paginate-container'}
+                    pageClassName={'page-item'}
+                    pageLinkClassName={'page-link'}
+                  />
+                )}
               </div>
             </div>
           </div>
