@@ -220,18 +220,24 @@ li {
   border-bottom: 8px solid #fff;
 }
 .hero-image-container {
-  margin-right: 350px;
+  margin-right: 650px;
 }
 .hero-image-container:hover {
   background-color: #191c29;
 }
 .main-content {
-  position: fixed;
+  position: absolute;
   align-items: center;
-  margin-left: 50%;
-  margin-top: 70px;
+  margin-left: 40%;
+  margin-top: 15px;
   display: inline-block;
 }
+
+.scroll-down {
+  top: 100px; /* Atur tinggi (y) sesuai kebutuhan saat menggulir ke bawah */
+}
+
+
 .button-5 {
   align-items: center;
   background-clip: padding-box;
@@ -491,7 +497,6 @@ body {
 .cover-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 .detail-image {
   width: 80%;
@@ -607,4 +612,179 @@ img {
   margin-top: 15px;
   flex-wrap: wrap;
   justify-content: center; /* Untuk mengatur posisi horizontal card di tengah */
+}
+.input-name {
+  width: 100%;
+  height: 10px; /* Sesuaikan dengan tinggi yang Anda inginkan */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: black;
+  margin-top: 10px;
+  resize: vertical; /* Ini memungkinkan pengguna untuk menyesuaikan tinggi textarea */
+}
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.comment-box {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  resize: vertical;
+}
+
+.submit-button {
+  align-self: flex-end;
+  position: absolute;
+  top:55%;
+  right: 10px;
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #3a00fa;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 1rem;
+  padding: calc(.675rem - 1px) calc(1.5rem - 1px);
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.comments {
+  color: #111;
+  text-wrap: wrap;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+@media (max-width: 750px) {
+  .main-content {
+    position: absolute;
+    align-items: center;
+    margin-left: 40%;
+    margin-top: -25px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .hero-image-container {
+    margin-top: 200px;
+    margin-right: 350px;
+    transform: translate(-0%, -50%);
+
+  }
+  .detail-image {
+    
+    width: 75%;
+  }
+}
+
+@media (min-width: 751px)  and (max-width: 1350px) {
+  .main-content {
+    position: absolute;
+    align-items: center;
+    margin-left: 40%;
+    margin-top: -25px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .hero-image-container {
+    margin-top: 200px;
+    margin-right: 350px;
+    transform: translate(-0%, -50%);
+
+  }
+  .detail-image {
+    
+    width: 65%;
+  }
+}
+
+/* Tambahkan CSS untuk gaya modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  text-align: center;
+  position: relative;
+  z-index: 101;
+}
+
+.close-modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  padding: 0;
+  margin: 0;
+}
+
+/* CSS lainnya seperti sebelumnya */
+
+.modal-button {
+  float: right;
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #289b28;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 1rem;
+  padding: calc(.675rem - 1px) calc(1.5rem - 1px);
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
 }
